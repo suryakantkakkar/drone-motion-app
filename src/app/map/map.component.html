@@ -1,26 +1,31 @@
-<div id="map"  #mapContainer class="map-container"></div>
 
 <div class="simulation-controls">
-  <h2>Drone Simulation</h2>
-  <div class="form-group">
-    <label for="startLng">Start Longitude:</label>
-    <input type="number" id="startLng" name="startLng" [(ngModel)]="startLng" required>
+    <h2>Enter Details for Drone Simulation</h2>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="startLng">Start Longitude:</label>
+        <input type="number" id="startLng" name="startLng" [(ngModel)]="startLng" required>
+      </div>
+      <div class="form-group">
+        <label for="startLat">Start Latitude:</label>
+        <input type="number" id="startLat" name="startLat" [(ngModel)]="startLat" required>
+      </div>
+      <div class="form-group">
+        <label for="endLng">End Longitude:</label>
+        <input type="number" id="endLng" name="endLng" [(ngModel)]="endLng" required>
+      </div>
+      <div class="form-group">
+        <label for="endLat">End Latitude:</label>
+        <input type="number" id="endLat" name="endLat" [(ngModel)]="endLat" required>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (in seconds):</label>
+        <input type="number" id="duration" name="duration" [(ngModel)]="duration" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="simulate-button" (click)="simulateDroneMotion(startLng, startLat, endLng, endLat, duration)">Simulate</button>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="startLat">Start Latitude:</label>
-    <input type="number" id="startLat" name="startLat" [(ngModel)]="startLat" required>
-  </div>
-  <div class="form-group">
-    <label for="endLng">End Longitude:</label>
-    <input type="number" id="endLng" name="endLng" [(ngModel)]="endLng" required>
-  </div>
-  <div class="form-group">
-    <label for="endLat">End Latitude:</label>
-    <input type="number" id="endLat" name="endLat" [(ngModel)]="endLat" required>
-  </div>
-  <div class="form-group">
-    <label for="duration">Duration (in seconds):</label>
-    <input type="number" id="duration" name="duration" [(ngModel)]="duration" required>
-  </div>
-  <button (click)="simulateDroneMotion(startLng, startLat, endLng, endLat, duration)">Simulate</button>
-</div>
+  
+<div id="map"  #mapContainer class="map-container"></div>

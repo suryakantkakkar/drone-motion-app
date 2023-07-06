@@ -75,18 +75,37 @@ export class MapComponent implements OnInit {
     const animateMarker = () => {
       currentTime = Date.now();
       progress = (currentTime - startTime) / (duration * 1000);
-
+    
       if (progress < 1) {
         const currentLngLat = turf.along(this.dronePath, speed * progress, { units: options });
         this.droneMarker.setLngLat(currentLngLat.geometry.coordinates as [number, number]);
         this.map.setCenter(currentLngLat.geometry.coordinates as [number, number]);
         
+        // Adjust the zoom level and bearing to fit your requirements
+        console.log(currentLngLat);
+        currentLngLat.geometry.coordinates[0]=currentLngLat.geometry.coordinates[0]-0.013;
+        currentLngLat.geometry.coordinates[1]= currentLngLat.geometry.coordinates[1]-0.013;
+        this.map.jumpTo({
+          center: currentLngLat.geometry.coordinates as [number, number],
+          zoom: 15, // Adjust the zoom level as needed
+          bearing: 0 // Adjust the bearing as needed
+        });
+    
         requestAnimationFrame(animateMarker);
       } else {
         this.droneMarker.setLngLat(coordinates[1] as [number, number]);
+        this.map.setCenter(coordinates[1] as [number, number]);
+
+        coordinates[1][0]=coordinates[1][0]-0.013;
+        coordinates[1][1]=coordinates[1][1]-0.013;
+        this.map.jumpTo({
+          center: coordinates[1] as [number, number],
+          zoom: 15, // Adjust the zoom level as needed
+          bearing: 0 // Adjust the bearing as needed
+        });
       }
     };
-
+    
     animateMarker();
   }
 }
