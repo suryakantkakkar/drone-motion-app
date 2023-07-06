@@ -90,7 +90,7 @@ export class MapComponent implements OnInit {
           zoom: 15, // Adjust the zoom level as needed
           bearing: 0 // Adjust the bearing as needed
         });
-    
+       
         requestAnimationFrame(animateMarker);
       } else {
         this.droneMarker.setLngLat(coordinates[1] as [number, number]);
@@ -100,9 +100,42 @@ export class MapComponent implements OnInit {
         coordinates[1][1]=coordinates[1][1]-0.013;
         this.map.jumpTo({
           center: coordinates[1] as [number, number],
-          zoom: 15, // Adjust the zoom level as needed
+          zoom: 4, // Adjust the zoom level as needed
           bearing: 0 // Adjust the bearing as needed
         });
+         
+        if (this.map.getSource('dronePathSource')) {
+          this.map.removeLayer('dronePathLayer');
+          this.map.removeSource('dronePathSource');
+        }
+        this.droneMarker.remove();
+        const pathCoordinates: number[][] = this.dronePath.geometry.coordinates;
+  const pathLine: turf.helpers.LineString = {
+    type: 'LineString',
+    coordinates: pathCoordinates
+  };
+
+  const pathFeature: turf.helpers.Feature<turf.helpers.LineString, turf.helpers.Properties> = {
+    type: 'Feature',
+    properties: {},
+    geometry: pathLine
+  };
+
+  this.map.addSource('dronePathSource', {
+    type: 'geojson',
+    data: pathFeature
+  });
+
+  this.map.addLayer({
+    id: 'dronePathLayer',
+    type: 'line',
+    source: 'dronePathSource',
+    paint: {
+      'line-color': '#FF0000',
+      'line-width': 2
+    }
+  });
+        
       }
     };
     

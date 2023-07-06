@@ -1,26 +1,26 @@
-
-<div class="simulation-controls">
+<div class="body" style="background-image: url('assets/bg.jpg');">
+<div class="simulation-controls"  >
     <h2>Enter Details for Drone Simulation</h2>
     <div class="form-row">
       <div class="form-group">
         <label for="startLng">Start Longitude:</label>
-        <input type="number" id="startLng" name="startLng" [(ngModel)]="startLng" required>
+        <input type="number" id="startLng" placeholder="Enter"  name="startLng" [(ngModel)]="startLng" required>
       </div>
       <div class="form-group">
         <label for="startLat">Start Latitude:</label>
-        <input type="number" id="startLat" name="startLat" [(ngModel)]="startLat" required>
+        <input type="number" id="startLat"  placeholder="Enter"  name="startLat" [(ngModel)]="startLat" required>
       </div>
       <div class="form-group">
         <label for="endLng">End Longitude:</label>
-        <input type="number" id="endLng" name="endLng" [(ngModel)]="endLng" required>
+        <input type="number" id="endLng"  placeholder="Enter" name="endLng" [(ngModel)]="endLng" required>
       </div>
       <div class="form-group">
         <label for="endLat">End Latitude:</label>
-        <input type="number" id="endLat" name="endLat" [(ngModel)]="endLat" required>
+        <input type="number" id="endLat"  placeholder="Enter" name="endLat" [(ngModel)]="endLat" required>
       </div>
       <div class="form-group">
         <label for="duration">Duration (in seconds):</label>
-        <input type="number" id="duration" name="duration" [(ngModel)]="duration" required>
+        <input type="number" id="duration"  placeholder="Enter" name="duration" [(ngModel)]="duration" required>
       </div>
     </div>
     <div class="form-group">
@@ -29,3 +29,4 @@
   </div>
   
 <div id="map"  #mapContainer class="map-container"></div>
+</div>
